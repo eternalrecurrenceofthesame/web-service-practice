@@ -101,7 +101,7 @@ View Layer 와 DB Layer 를 철저하게 분리하자.
 
 Controller에서 결괏값으로 여러 테이블을 조인해서 보여줘야하는 경우가 많고
 
-이런 경우 Entity 크랠스로만 표현하기 어려움.
+이런 경우 Entity 클래스로만 표현하기 어려움.
 
 결론 : 꼭 Entity 클래스와 Controller 에서 사용할 Dto 를 분리하자.
 
