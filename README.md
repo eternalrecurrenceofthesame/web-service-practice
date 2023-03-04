@@ -32,3 +32,21 @@ public void cancelOrder(){
 this.status = false;
 }
 ```
+
+### 롬복을 이용해서 게시글 생성 빌더 만들기  97
+생성자에 매개변수가 많다면 빌더를 고려할 수 있다.
+
+롬복에서 제공하는 @Builder 애노테이션을 이용하면 빌더 패턴을 쉽게 만들 수 있다.
+
+```
+@Builder(builderMethodName = "createPosts")
+    private Posts(String title, String content, String author){
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+    
+postsRepository.save(Posts.createPosts()
+.title(title).content(content).autohr(author).build());
+```
+
