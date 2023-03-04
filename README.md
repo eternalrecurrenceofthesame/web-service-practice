@@ -95,5 +95,9 @@ Controller에서 결괏값으로 여러 테이블을 조인해서 보여줘야�
 
 결론 : 꼭 Entity 클래스와 Controller 에서 사용할 Dto 를 분리하자.
 
+restApi는 Dto 로 만들고 Template 엔진으로 보여줄 화면은 Form 객체로 만듦.
+
+Dto, Form 객체는 Web 계층에 두고 사용
+
 
 
