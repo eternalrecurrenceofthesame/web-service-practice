@@ -78,6 +78,16 @@ Item -> Order -> OrderItem
     }
 ```    
 
+Dto 로 받은 값을 Entity 로 바꿔서 저장
+
+```
+ @Transactional
+    public Long save(PostsSaveRequestDto requestDto){
+        return postsRepository.save(requestDto.toEntity())  // 엔티티로 변경
+                .getId();
+    }
+```
+
 ## 엔티티를 외부로 노출하지 말라!
 서비스 클래스, 비즈니스 로직들은 Entity 클래스를 기준으로 동작한다.
 
