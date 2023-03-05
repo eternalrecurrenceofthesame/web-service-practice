@@ -176,3 +176,28 @@ logging.level:
   org.hibernate.sql: debug
 ```
 
+* 주의사항
+
+create : 기존 테이블 삭제 후 다시 생성 
+
+create-drop: create와 같으나 종료 시점에 테이블 드랍
+
+update: 변경분만 반영(운영db에서는 사용 x) , 추가만 되고 지우는건 안대 
+
+validate: 엔티티와 테이블이 정상 매핑 됐는지 확인 
+
+none: 스키마를 사용하지 않음 
+
+
+JPA 는 어플리케이션 로딩시점에 테이블을 만들어주는 AUTO DDL 기능을 제공한다 
+
+운영 장비에서는 절대 create, create-drop, update 를 사용하면 안된다.
+
+시스템이 직접 테이블을 만들어주는 것은 위험하다.
+
+스테이징과 운영 서버에서는 validate 또는 none,
+
+초기 단계에서 create, update를 고려할 수 있지만 개발 개발 서버나 테스트도 가급적 validate만을 사용하자.
+
+
+
