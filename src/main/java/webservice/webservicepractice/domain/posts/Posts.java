@@ -24,6 +24,13 @@ public class Posts {
     private String author;
 
 
+    /** 메서드 */
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
+    /** 게시글 생성 */
     @Builder(builderMethodName = "createPosts")
     private Posts(String title, String content, String author){
         this.title = title;

@@ -1,0 +1,17 @@
+spring:
+    datasource:
+      url: jdbc:h2:tcp://localhost/~/webservice
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+
+jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+# 콘솔 로그        show_sql: true
+
+
+logging.level:
+  org.hibernate.sql: debug
