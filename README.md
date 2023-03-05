@@ -107,7 +107,50 @@ Controller에서 결괏값으로 여러 테이블을 조인해서 보여줘야�
 
 restApi는 Dto 로 만들고 Template 엔진으로 보여줄 화면은 Form 객체로 만듦.
 
-Dto, Form 객체는 Web 계층에 두고 사용 ?
+Dto, Form 객체는 Web 계층에 두고 사용
 
 
+### API 테스트 (게시글 저장)
+```
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class PostsApiControllerTest
 
+@LocalServerPort 
+private int port;
+
+@Autowired
+private TestRestTemplate restTemplate;
+
+String url = "http://localhost:" + port + "/api/v1/posts";
+
+ResponseEntity<Long> responseEntity = restTemplate
+                .postForEntity(url, requestDto, Long.class);
+
+```
+ResponseEntity 는 Http 메시지 헤더, 바디, Http 응답 코드를 가지고 있다.
+
+webEnvironment 설정과 @LocalServerPort 를 사용해서 랜덤 포트를 받고 URI 를 만든다
+
+"http://localhost:" + port + "/api/v1/posts" ApiController 에 postService.save 를 요청하는 URL 생성 후 
+
+RestTemplate 으로 URL, DTO, 요청 반환값을 넣어주면 ResponseEntity 를 반환해준다.
+
+
+* 참고로 API 예외처리시 @ExceptionHandler 로 일괄 처리할 수 있다.
+
+### API 테스트 (게시글 수정)
+```
+PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.updatePosts()
+                .title(expectedTitle)
+                .content(expectedContent)
+                .content(expectedContent)
+                .build();
+
+HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+
+ResponseEntity<Long> responseEntity =
+                restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+```
+업데이트 Dto 를 만들고 HttpEntity 에 요청 바디를 넣고 PUT 수행 후 응답을 받는다 위와 비슷한 메커니즘에서
+
+PUT 을 이용한 수정.
