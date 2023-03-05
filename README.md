@@ -154,3 +154,25 @@ ResponseEntity<Long> responseEntity =
 업데이트 Dto 를 만들고 HttpEntity 에 요청 바디를 넣고 PUT 수행 후 응답을 받는다 위와 비슷한 메커니즘에서
 
 PUT 을 이용한 수정.
+
+### H2 데이터베이스 yml 설정
+```
+spring:
+    datasource:
+      url: jdbc:h2:tcp://localhost/~/webservice
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+
+jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+# 콘솔 로그        show_sql: true
+
+
+logging.level:
+  org.hibernate.sql: debug
+```
+
