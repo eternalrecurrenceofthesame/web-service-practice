@@ -157,24 +157,31 @@ PUT 을 이용한 수정.
 
 ### H2 데이터베이스 yml 설정
 ```
-spring:
-    datasource:
-      url: jdbc:h2:tcp://localhost/~/webservice
-      driver-class-name: org.h2.Driver
-      username: sa
-      password:
+spring: 띄어쓰기 없음
+  datasource: 2칸
+    url: 4칸
+    username:
+    password:
+    driver-class-name: org.h2.Driver
 
-jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-# 콘솔 로그        show_sql: true
+  jpa: 2칸
+    hibernate: 4칸
+      ddl-auto: create 6칸
+    properties: 4칸
+      hibernate: 6칸
+#콘솔 로그        show_sql: 8칸
+        format_sql: true 8칸
 
 
-logging.level:
-  org.hibernate.sql: debug
+logging.level: 띄어쓰기 없음
+  org.hibernate.sql: debug 2칸
 ```
+
+* 띄어쓰기를 조심하자!
+
+yml 파일은 띄어쓰기 2 칸으로 계층을 만든다
+ 
+예를 들면 datasource는 spring: 하위에 있고 앞에 띄어쓰기 2 칸이 있으니 spring.datasource가 된다.
 
 * 주의사항
     
