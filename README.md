@@ -200,4 +200,27 @@ JPA 는 어플리케이션 로딩시점에 테이블을 만들어주는 AUTO DDL
 초기 단계에서 create, update를 고려할 수 있지만 개발 개발 서버나 테스트도 가급적 validate만을 사용하자.
 
 
+### Auditing
+테이블을 생성할 때는 등록일과 수정일을 꼭 남겨야 한다. 보통 모든 테이블에 다 등록일,수정일을 기록함
+
+Auditing 기능을 사용하면 엔티티에 등록일 수정일 필드를 만들지 않고 속성값만 내려받아서 사용할 수 있다.
+
+```
+@MappedSuerclass // 클래스 상속시 필드값 인식
+@EntityListners(AuditingEntityListner.class) // 클래스에 Auditing 기능 포함
+public abstract class BaseTimeEntity { // Auditing 클래스는 생성할 일이 없으니 추상 클래스로 만들어준다.
+
+@CreatedDate
+@Column(updatable = false) // 생성 시간 수정 불가
+private LocalDateTime createdDate;
+
+@LastModifedDate
+private LocalDateTime modifiedDate;
+
+}
+
++ @EnableJpaAuditing 애노테이션을 Application 클래스에 추가
+```
+
+Auditing 클래스를 만들고 필요한 테이블에서 상속하면 컬럼 값에 등록일 수정일을 쉽게 추가해서 사용할 수 있다.
 
