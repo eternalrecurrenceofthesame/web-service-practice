@@ -1,6 +1,7 @@
 package webservice.webservicepractice.service.posts;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webservice.webservicepractice.domain.posts.Posts;
@@ -13,6 +14,7 @@ import webservice.webservicepractice.web.dto.PostsUpdateRequestDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PostsService {
@@ -24,6 +26,7 @@ public class PostsService {
      */
     @Transactional
     public Long save(PostsSaveRequestDto requestDto){
+
         return postsRepository.save(requestDto.toEntity())
                 .getId();
     }
