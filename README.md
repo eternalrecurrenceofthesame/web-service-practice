@@ -231,3 +231,40 @@ private LocalDateTime modifiedDate;
 
 Auditing 클래스를 만들고 필요한 테이블에서 상속하면 컬럼 값에 등록일 수정일을 쉽게 추가해서 사용할 수 있다.
 
+
+## 타임리프로 동적 게시판 만들기
+```
+<head th:replace="~{/fragment/head :: head}">
+<div th:replace="fragment/footer :: footer"/>
+```
+템플릿 조각을 이용해서 공통으로 사용할 head.html 와 footer.html 을 가지고 온다.(레이아웃 리팩토링 예정)
+
+그리고 th:inline 을 이용해서 자바스크립트로 등록 버튼 클릭시 간단한 alert 메시지가 나오게끔 만듦
+
+```
+<footer th:fragment="footer">
+    <link rel="stylesheet" th:href="@{/js/jquery-3.6.3.min.js}">
+
+    <script th:inline="javascript">
+        function posts(){
+         alert("등록 완료")
+        }
+    </script>
+</footer>
+
+<button type="submit" class="btn btn-primary" id="btn-save"
+th:onclick="posts()">등록</button>
+```
+등록하면 등록 완료라는 작은 박스 메시지가 나오게됨.
+
+createPostsForm.html , footer.html, head.html 을 합쳐서 게시판 + alert 메시지 만듦
+
+https://www.baeldung.com/thymeleaf-js-function-call 참고.
+
+
+
+
+
+
+
+
