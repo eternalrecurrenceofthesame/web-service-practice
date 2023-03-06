@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import webservice.webservicepractice.domain.posts.Posts;
 import webservice.webservicepractice.domain.posts.PostsRepository;
+import webservice.webservicepractice.service.posts.PostsService;
+import webservice.webservicepractice.web.dto.PostsResponseDto;
 import webservice.webservicepractice.web.dto.PostsSaveRequestDto;
 import webservice.webservicepractice.web.dto.PostsUpdateRequestDto;
 
@@ -39,6 +41,9 @@ class PostsApiControllerTest {
 
     @Autowired
     private PostsRepository postsRepository;
+
+    @Autowired
+    private PostsService postsService;
 
     @AfterEach // 각 테스트 케이스 종료 후 호출
     public void tearDown(){
@@ -114,6 +119,22 @@ class PostsApiControllerTest {
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
 
+    }
+
+    @Test
+    void 간단_테스트(){
+
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build();
+
+        postsService.save(requestDto);
+
+        PostsResponseDto byId = postsService.findById(1L);
+
+        System.out.println(">>>>>>>>>>>>>>>>>>" + byId.getAuthor());
     }
 
 

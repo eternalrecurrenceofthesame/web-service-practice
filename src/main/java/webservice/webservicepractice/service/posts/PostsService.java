@@ -5,9 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webservice.webservicepractice.domain.posts.Posts;
 import webservice.webservicepractice.domain.posts.PostsRepository;
+import webservice.webservicepractice.web.dto.PostsListResponseDto;
 import webservice.webservicepractice.web.dto.PostsResponseDto;
 import webservice.webservicepractice.web.dto.PostsSaveRequestDto;
 import webservice.webservicepractice.web.dto.PostsUpdateRequestDto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -52,6 +56,16 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+
+    /**
+     * 게시글 목록 조회
+     */
+    @Transactional(readOnly=true)
+    public List<PostsListResponseDto> findAllDesc(){
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 
 
 }
