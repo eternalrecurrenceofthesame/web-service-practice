@@ -261,10 +261,5 @@ createPostsForm.html , footer.html, head.html 을 합쳐서 게시판 + alert �
 
 https://www.baeldung.com/thymeleaf-js-function-call 참고.
 
-
-
-
-
-
-
-
+### 게시글 수정과 주의사항!!
+리다이렉트 추가 예정.
