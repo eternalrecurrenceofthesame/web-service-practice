@@ -27,3 +27,7 @@
 
 그래서 코드별 키 값을 ROLE_GUEST, ROLE_USER 등으로 지정
 
+### 스프링 시큐리티 설정 정보
+WebSecurityConfigurerAdapter 가 삭제됨 따라서 configure 을 @Bean 으로 등록 후
+
+SecurityFilterChain 을 반환하면 된다. 180p
