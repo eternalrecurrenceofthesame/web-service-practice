@@ -299,6 +299,34 @@ PostsController 에서 게시글 수정시 먼저 게시판 아이디 값을 넘
 **한줄 요약: 어설프게 컨트롤러에서 디티오를 엔티티로 변환하지 말자!! 엔티티는 외부로 노출하지 말자!!**
 
 
+### 자바스크립트 alert 를 th:onclick 에서 사용하기
+간단한 메시지 박스를 띄우고 싶은 경우
+```
+<div class="row">
+  <div class="col">
+     <button type="submit" class="btn btn-primary" id="btn-edit"
+        th:onclick="postEdit()">수정</button>
+         </div>
+         
+...
+function postEdit() {
+        alert("수정 완료")
+        }
+```
+템플릿 조각에 만들어둔 자바스크립트 alert 를 가져와서 th:onclick"postEdit()" 으로 수정 완료 메시지 박스를 만들 수 있다.
+
+
+메시지 박스 + 하이퍼링크
+```
+<div class="col">
+ <button type="button" class="btn btn-danger"
+    th:onclick="|location.href='@{/post/edit/{id}/delete(id=${editPost.id})}', postDelete()|">삭제</button>
+    </div>
+```
+
+삭제 버튼에 하이퍼링크로 삭제 API 를 호출할 수 있게 만듦 그리고 postDelete() 를 호출해서 삭제 메시지 박스까지 추가!!
+
+리터럴 대체 안에서 자바스크립트를 호출해야 하는 점을 주의하자!!
 
 
 리다이렉트 추가 예정.
