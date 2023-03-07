@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer">
+    <link rel="stylesheet" th:href="@{/js/jquery-3.6.3.min.js}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.js}">
+
+    <script th:inline="javascript">
+        function posts(){
+         alert("등록 완료")
+        }
+        function postEdit() {
+        alert("수정 완료")
+        }
+
+         </script>
+</footer>
+</body>
+</html>
+
+
+

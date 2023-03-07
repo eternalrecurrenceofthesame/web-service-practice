@@ -36,6 +36,11 @@ public class PostsService {
      * 게시글 수정
      *
      * API 예외 처리시 @ExceptionHandler 를 통해 일괄 처리 가능
+     *
+     * <중요!!>
+     * 게시글 수정시 변경감지를 해야한다. 영속성 컨텍스트 내에서 더티체킹으로 수정해야 수정값만 바뀜
+     * 즉 트랜잭션 내에서 리포지토리의 값을 찾고 update 메서드로 값을 수정하면 원본과 스냅샷을 비교해서
+     * 커밋 전 더티체킹이 일어나고 변경감지로 데이터베이스의 값이 변경된다.
      */
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto){
@@ -46,6 +51,18 @@ public class PostsService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @Transactional
+    public void delete(Long id){
+        Posts post = postsRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시글이 없습니다. id =" + id));
+
+        postsRepository.delete(post);
 
     }
 
