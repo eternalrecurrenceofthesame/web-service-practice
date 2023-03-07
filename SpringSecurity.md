@@ -31,3 +31,9 @@
 WebSecurityConfigurerAdapter 가 삭제됨 따라서 configure 을 @Bean 으로 등록 후
 
 SecurityFilterChain 을 반환하면 된다. 180p
+
+
+## OAuth 코드 작성, 메커니즘 
+
+
+
