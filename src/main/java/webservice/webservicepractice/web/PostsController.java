@@ -37,7 +37,7 @@ public class PostsController {
     /**
      * 게시글 수정
      */
-    @GetMapping("/post/edit/{id}")
+    @GetMapping("/posts/edit/{id}")
     public String postEdit(@PathVariable Long id, Model model){
         PostsResponseDto editPost = postsService.findById(id);
         model.addAttribute("editPost", editPost);
@@ -45,7 +45,7 @@ public class PostsController {
         return "editPost";
     }
 
-    @PostMapping("/post/edit/{id}")
+    @PostMapping("/posts/edit/{id}")
     public String postUpdate(@PathVariable Long id, @ModelAttribute PostsUpdateRequestDto postsUpdateRequestDto){
 
         postsService.update(id, postsUpdateRequestDto);
@@ -56,7 +56,7 @@ public class PostsController {
     /**
      * 게시글 삭제
      */
-    @GetMapping("/post/edit/{id}/delete")
+    @GetMapping("/posts/edit/{id}/delete")
     public String postDelete(@PathVariable Long id){
         postsService.delete(id);
 
