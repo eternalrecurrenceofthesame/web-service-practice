@@ -32,13 +32,10 @@
                         <button type="submit" class="btn btn-primary" id="btn-edit"
                                 th:onclick="postEdit()">수정</button>
                     </div>
-
                     <div class="col">
-                        <button class="btn btn-danger"
-                                th:onclick="|location.href='@{/post/edit/{id}/delete(id=${editPost.id})}'|"
-                                type="button">삭제</button>
+                        <button type="button" class="btn btn-danger"
+                                th:onclick="|location.href='@{/post/edit/{id}/delete(id=${editPost.id})}', postDelete()|">삭제</button>
                     </div>
-
                     <div class="col">
                         <button onclick="location.href='home.html'" class="btn btn-secondary"
                                 th:onclick="|location.href='@{/}'|" type="button">취소</button>
