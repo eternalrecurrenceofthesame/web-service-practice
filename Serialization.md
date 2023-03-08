@@ -16,6 +16,8 @@
 
 직렬화 과정에서 하는 일은 **인스턴스** 변수 값을 스트림으로 만드는 것이다.
 
+ObjectInputStream, ObjectOutputStream 을 사용해서 **인스턴스**의 변수값을 스트림으로 만들어서 직렬화 하는 메커니즘!
+
 ```
 class Person implements Serializable{ 
     private static final long serialVersionUID = -3141535L; //버전 관리 정보
