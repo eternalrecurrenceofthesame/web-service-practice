@@ -73,6 +73,51 @@ private static final long serialVersionUID = ;
 ```
 
 
+### implements Externalizable 로 세밀한 직렬화 만들기
+고양이의 이름만 입력 출력 하고 싶을 때 
+
+```
+class Cat implements Externalizable{
+
+String name;
+
+String age;
+
+public Cat() {}; // Externalizable 시 디폴트 생성자 있어야 한다. 복원시 호출됨
+
+@Override
+public void writeExternal(ObjectOutput out) throws IOException {
+out.writeUTF(name); // 이름만 출력하고 싶을 때 
+}
+@Override
+public void readExternal(ObjectInput int) throws IOException, ClassNotFoundException{
+name = in.readUTF(); // 이름만 읽기
+}
+
+public String toString(){
+return name;
+}
+
+...
+
+FileOutputStream fos = new FileOutputStream("external.out");
+ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+try(fos; oos){
+oos.writeObject(myCat);
+}catch(IOException e){
+e.printStackTrace();
+}
+
+FileInputStream fis = new FileInputStream("external.out");
+ObjectInputStream ois = new ObjectInputStream(fis);
+
+Cat cat = (Cat)ois.readObject();
+System.out.println(cat);
+
+
+}
+```
 
 
 
