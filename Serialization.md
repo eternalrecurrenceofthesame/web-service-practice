@@ -87,7 +87,7 @@ public Cat() {}; // Externalizable 시 디폴트 생성자 있어야 한다. 복
 
 @Override
 public void writeExternal(ObjectOutput out) throws IOException {
-out.writeUTF(name); // 이름만 출력하고 싶을 때 
+out.writeUTF(name); // 이름만 입력하고 싶을 때 
 }
 @Override
 public void readExternal(ObjectInput int) throws IOException, ClassNotFoundException{
