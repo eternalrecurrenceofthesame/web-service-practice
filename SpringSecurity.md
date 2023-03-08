@@ -19,21 +19,7 @@
 
 ### 스프링 부트 2.0 OAuth2 연동 165p
 
-### 구글 서비스 등록
-
-
-### 사용자 정보 User 클래스
-스프링 시큐리티에서는 권한 코드에 항상 ROLE_ 이 앞에 있어야만 한다.
-
-그래서 코드별 키 값을 ROLE_GUEST, ROLE_USER 등으로 지정
-
-### 스프링 시큐리티 설정 정보
-WebSecurityConfigurerAdapter 가 삭제됨 따라서 configure 을 @Bean 으로 등록 후
-
-SecurityFilterChain 을 반환하면 된다. 180p
-
-
-## OAuth 코드 작성, 메커니즘 
+리팩토링 예정.. 교재의 방식으로 하니까 안 됨 .. 직접 시큐리트를 배워서 리팩토링 해보자!!
 
 
 
