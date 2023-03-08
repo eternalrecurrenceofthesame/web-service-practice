@@ -17,7 +17,7 @@
 직렬화 과정에서 하는 일은 인스턴스 변수 값을 스트림으로 만드는 것이다.
 
 ```
-class Person implements Serializable{
+class Person implements Serializable{ 
     private static final long serialVersionUID = -3141535L; //버전 관리 정보
     String name;
     String job;
@@ -38,4 +38,42 @@ Person personC = new Person("웰스2", "고양이");
 
 ```
 
-직렬화를 사용할 때는 사용할 클래스에서 Serializable 을 구현해야 한다.
+#### implements Serializable
+직렬화는 인스턴스 내용이 외부로 유출되는 것이므로 프로그래머가 직접 직렬화 하겠다는 의도를
+
+표시해야 한다.
+
+#### transient 예약어
+직렬화 대상이 되는 클래스는 모든 인스턴스의 변수가 직렬화되고 복원된다. 그런데 직렬화될 수 없는
+
+클래스(Socket 클래스)가 인스턴스 변수로 있다거나 직렬화하고 싶지 않은 변수가 있을 수 있음 그럴 때 
+
+transient 예약어를 필드에 넣어주자 그러면 안나옴
+
+```
+String name;
+transient String job;
+```
+
+#### serialVersionUID 를 사용한 버전 관리
+객체 역직렬화시 직렬화 할 때의 클래스와 상태가 다르면(수정, 변경) 오류가 발생한다.
+
+직렬화는 자동으로 serialVersionUid 를 생성해서 저장하고 역직렬화시 버전이 맞지 않으면
+
+오류가 발생, 그런데 작은 변경에도 클래스 버전이 계속 바뀐다면 네트워크로 객체를
+
+공유해서 일하는 경우에 매번 클래스를 새로 배포해야하는 번거로움이 생김 
+
+이런 경우 클래스의 버전관리를 직접할 수 있음 
+
+직렬화의 대상이 되는 클래스 정보가 바뀌고 이를 공유해야 하는 경우에 버전 정보를 변경하면 된다!!
+ 
+```
+private static final long serialVersionUID = -195515480466720771L;
+```
+
+
+
+
+
+
