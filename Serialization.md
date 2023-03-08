@@ -69,7 +69,7 @@ transient String job;
 직렬화의 대상이 되는 클래스 정보가 바뀌고 이를 공유해야 하는 경우에 버전 정보를 변경하면 된다!!
  
 ```
-private static final long serialVersionUID = -195515480466720771L;
+private static final long serialVersionUID = ;
 ```
 
 
