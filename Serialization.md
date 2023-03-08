@@ -74,9 +74,10 @@ private static final long serialVersionUID = ;
 
 
 ### implements Externalizable 로 세밀한 직렬화 만들기
-고양이의 이름만 입력 출력 하고 싶을 때 
+고양이의 이름만 입력 출력 하고 싶을 때 나이는 null 값으로 나옴.
 
 ```
+@ToString
 class Cat implements Externalizable{
 
 String name;
@@ -94,11 +95,13 @@ public void readExternal(ObjectInput int) throws IOException, ClassNotFoundExcep
 name = in.readUTF(); // 이름만 읽기
 }
 
-public String toString(){
-return name;
-}
+
 
 ...
+
+Cat cat = new Cat();
+cat.name = "웰스";
+cat.age = "1";
 
 FileOutputStream fos = new FileOutputStream("external.out");
 ObjectOutputStream oos = new ObjectOutputStream(fos);
